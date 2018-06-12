@@ -1,0 +1,25 @@
+{
+  "name": "react-europe-apollo",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "deepmerge": "^2.1.0",
+    "emotion": "^9.1.2",
+    "prismjs": "1.12.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-emotion": "^9.1.2",
+    "react-player": "^1.6.4",
+    "spectacle-scripts": "2.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && surge -p build"
+  },
+  "devDependencies": {
+    "surge": "^0.20.1"
+  }
+}
