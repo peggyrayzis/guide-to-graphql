@@ -9,7 +9,6 @@
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-emotion": "^9.1.2",
-    "react-player": "^1.6.4",
     "spectacle-scripts": "2.0.0"
   },
   "scripts": {

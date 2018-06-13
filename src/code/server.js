@@ -1,6 +1,6 @@
 export const restExample = `GET /api/pizza/cheese
-GET /api/pizza/sauce
-GET /api/pizza/toppings`;
+GET /api/pizza/supreme
+GET /api/pizza/margherita`;
 
 export const gqlExample = `query {
   pizza {
@@ -9,6 +9,7 @@ export const gqlExample = `query {
     }
     toppings {
       basil
+      mushrooms
     }
   }
 }`;
@@ -24,22 +25,34 @@ server.listen()
   })
 `;
 
-export const resolvers = `const resolvers = {
-  Query: {
-    movies: async (root, { sort }) => {
-      const results = await fetch('https://movieapi.com/movies');
-      const movies = await results.json();
+// const fetchMovies = sort => async dispatch => {
+//   dispatch(requestMovies(sort));
 
-      return sort === 'POPULARITY'
-        ? movies.sort((a, b) => {
-            return b.popularity - a.popularity;
-          })
-        : movies;
-    },
-  },
-};`;
+//   const results = await fetch('https://movieapi.com/movies');
+//   const movies = await results.json();
 
-const dataSource = `class MovieAPI extends RESTDataSource {
+//   const sortedMovies =
+//     sort === 'POPULARITY'
+//       ? movies.sort((a, b) => b.popularity - a.popularity)
+//       : movies;
+
+//   return dispatch(receiveMovies(sort, sortedMovies));
+// };
+
+// const resolvers = {
+//   Query: {
+//     movies: async (root, { sort }) => {
+//       const results = await fetch('https://movieapi.com/movies');
+//       const movies = await results.json();
+
+//       return sort === 'POPULARITY'
+//         ? movies.sort((a, b) => b.popularity - a.popularity)
+//         : movies;
+//     },
+//   },
+// };
+
+export const dataSource = `class MovieAPI extends RESTDataSource {
   baseURL = 'https://movieapi.com/';
 
   getProgram(id) {
@@ -48,7 +61,6 @@ const dataSource = `class MovieAPI extends RESTDataSource {
 
   async getMostViewedMovies() {
     const body = await this.get('movies', {
-      hours: 1,
       per_page: 10,
       order_by: 'most_viewed',
     });
